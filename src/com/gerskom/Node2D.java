@@ -2,14 +2,21 @@ package com.gerskom;
 
 import java.awt.*;
 
-public class Point2D {
+public class Node2D {
 
     int x;
     int y;
+    int value;
 
-    public Point2D(int x, int y) {
+    public Node2D(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Node2D(int x, int y, int value) {
+        this.x = x;
+        this.y = y;
+        this.value = value;
     }
 
     public void print() {

@@ -2,8 +2,6 @@ package com.gerskom;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +9,9 @@ public class SimulationPanel extends JPanel {
 
     ImageData imageData;
 
-    static List<Point2D> points;
+    static List<Node2D> points;
     static List<LineSegment> lineSegments = new ArrayList<>();
+    static List<Boundary> boundaries = new ArrayList<>();
     static List<Line> lines = new ArrayList<>();
 
     public SimulationPanel(ImageData imageData) {
@@ -32,15 +31,28 @@ public class SimulationPanel extends JPanel {
             lineSegment.paintComponent(g2D);
         }
 
-        for (Point2D point2D : points) {
-            point2D.paintComponent(g2D);
+        QuadTree quadTree = new QuadTree(1, new Boundary(0,0, imageData.width, imageData.height));
+
+        imageData.keyPoints.get(0).print();
+        for(Node2D node : imageData.keyPoints) {
+            quadTree.insert(node.x, node.y, 1);
+        }
+        QuadTree.dfs(quadTree);
+        //repaint();
+
+        for(Boundary boundary : boundaries) {
+            boundary.paintComponent(g2D);
+        }
+
+        for (Node2D node2D : points) {
+            node2D.paintComponent(g2D);
         }
         g2D.dispose();
     }
 
-    public static Point2D addPoint2D(Point2D point2D) {
-        points.add(point2D);
-        return point2D;
+    public static Node2D addPoint2D(Node2D node2D) {
+        points.add(node2D);
+        return node2D;
     }
 
     static void removePoint2D() {
@@ -53,9 +65,25 @@ public class SimulationPanel extends JPanel {
         return lineSegment;
     }
 
-    public static LineSegment addLineSegment(Point2D p1, Point2D p2) {
+    public static LineSegment addLineSegment(Node2D p1, Node2D p2) {
         LineSegment lineSegment = new LineSegment(p1, p2);
         lineSegments.add(lineSegment);
         return lineSegment;
+    }
+
+    public static void addBoundary(Boundary boundary) {
+        boundaries.add(boundary);
+        boundary.print();
+    }
+
+    public void quadTreeAlgorithm() {
+        QuadTree quadTree = new QuadTree(1, new Boundary(0,0, imageData.width, imageData.height));
+
+        imageData.keyPoints.get(0).print();
+        for(Node2D node : imageData.keyPoints) {
+            quadTree.insert(node.x, node.y, 1);
+        }
+        QuadTree.dfs(quadTree);
+        repaint();
     }
 }

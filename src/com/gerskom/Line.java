@@ -3,8 +3,8 @@ package com.gerskom;
 public class Line {
     float a;
     float b;
-    Point2D p;
-    Point2D pBorder;
+    Node2D p;
+    Node2D pBorder;
     float angle;
 
     public Line(float a, float b) {
@@ -20,21 +20,21 @@ public class Line {
         this.angle = (float)(Math.atan(a * 180 / Math.PI));
     }
 
-    public Line (Point2D p, float angle) {
+    public Line (Node2D p, float angle) {
         this.p = p;
         this.angle = angle;
         this.a = (float)Math.tan(angle * Math.PI / 180);
         this.b = p.y - a * p.x;
     }
 
-    public Line(Line line, Point2D point2D) {
+    public Line(Line line, Node2D node2D) {
         this.a = line.a;
         this.b = line.b;
-        this.p = point2D;
+        this.p = node2D;
         this.angle = (float)(Math.atan(a * 180 / Math.PI));
     }
 
-    public Line(Point2D p1, Point2D p2) {
+    public Line(Node2D p1, Node2D p2) {
         this.a = (p1.y - p2.y) / (p1.x - p2.x);
         this.b = p1.y - a * p1.x;
         this.p = p1;

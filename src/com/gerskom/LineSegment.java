@@ -3,10 +3,10 @@ package com.gerskom;
 import java.awt.*;
 
 public class LineSegment {
-    Point2D p1;
-    Point2D p2;
+    Node2D p1;
+    Node2D p2;
 
-    public LineSegment(Point2D p1, Point2D p2) {
+    public LineSegment(Node2D p1, Node2D p2) {
         this.p1 = p1;
         this.p2 = p2;
     }

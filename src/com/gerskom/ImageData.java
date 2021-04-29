@@ -13,7 +13,7 @@ public class ImageData {
     BufferedImage image;
     public final int width;
     public final int height;
-    List<Point2D> keyPoints = new ArrayList<>();
+    List<Node2D> keyPoints = new ArrayList<>();
 
     ImageData(String path) throws IOException {
         this.image = ImageIO.read(new File(path));
@@ -24,7 +24,7 @@ public class ImageData {
             for(int y = 0; y < height; y ++) {
                 Color tmpColor = new Color(image.getRGB(x, y), false);
                 if(!tmpColor.equals(Color.BLACK) && !tmpColor.equals(Color.WHITE) && !tmpColor.equals(new Color(254,254,254))) {
-                    Point2D newPoint = new Point2D(x, y);
+                    Node2D newPoint = new Node2D(x, y);
                     this.keyPoints.add(newPoint);
                 }
             }
