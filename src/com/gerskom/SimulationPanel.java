@@ -12,12 +12,14 @@ public class SimulationPanel extends JPanel {
     static List<Node2D> points;
     static List<LineSegment> lineSegments = new ArrayList<>();
     static List<Boundary> boundaries = new ArrayList<>();
-    static List<Line> lines = new ArrayList<>();
 
     public SimulationPanel(ImageData imageData) {
         super();
         this.imageData = imageData;
+        this.setPreferredSize(new Dimension(imageData.width, imageData.height));
         points = imageData.keyPoints;
+        //testData();
+        quadTreeAlgorithm();
     }
 
     public void paintComponent(Graphics g) {
@@ -27,18 +29,9 @@ public class SimulationPanel extends JPanel {
 
         g2D.drawImage(imageData.image, 0, 0, null);
 
-        for (LineSegment lineSegment : lineSegments) {
+        /*for (LineSegment lineSegment : lineSegments) {
             lineSegment.paintComponent(g2D);
-        }
-
-        QuadTree quadTree = new QuadTree(1, new Boundary(0,0, imageData.width, imageData.height));
-
-        imageData.keyPoints.get(0).print();
-        for(Node2D node : imageData.keyPoints) {
-            quadTree.insert(node.x, node.y, 1);
-        }
-        QuadTree.dfs(quadTree);
-        //repaint();
+        }*/
 
         for(Boundary boundary : boundaries) {
             boundary.paintComponent(g2D);
@@ -76,14 +69,21 @@ public class SimulationPanel extends JPanel {
         boundary.print();
     }
 
-    public void quadTreeAlgorithm() {
-        QuadTree quadTree = new QuadTree(1, new Boundary(0,0, imageData.width, imageData.height));
+    void testData() {
+        boundaries.add(new Boundary(0,0,imageData.image.getWidth(),imageData.image.getHeight()));
+        boundaries.add(new Boundary(250,250,450,450));
+        //this.repaint();
+        //quadTreeAlgorithm();
+    }
 
-        imageData.keyPoints.get(0).print();
+    public void quadTreeAlgorithm() {
+        QuadTree quadTree = new QuadTree(1, new Boundary(0,0,imageData.width, imageData.height));
+
         for(Node2D node : imageData.keyPoints) {
             quadTree.insert(node.x, node.y, 1);
         }
         QuadTree.dfs(quadTree);
-        repaint();
+        System.out.println("end");
+        //this.repaint();
     }
 }

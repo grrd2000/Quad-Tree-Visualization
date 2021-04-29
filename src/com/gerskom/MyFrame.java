@@ -15,9 +15,10 @@ public class MyFrame extends JFrame {
     public MyFrame(ImageData imageData) {
 
         ImageIcon icon = new ImageIcon("input.jpg");
+        centerPanel = new SimulationPanel(imageData);
 
-        int width = imageData.width + 40;
-        int height = imageData.height + 40;
+        int width = imageData.width;
+        int height = imageData.height;
         this.setSize(width, height);
         this.setTitle("QuadTree Visualization");
         this.getContentPane().setBackground(Color.DARK_GRAY);
@@ -25,10 +26,8 @@ public class MyFrame extends JFrame {
         this.setResizable(false);
         this.setIconImage(icon.getImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout(20,5));
+        this.setLayout(new BorderLayout(0,0));
         this.setVisible(true);
-
-        centerPanel = new SimulationPanel(imageData);
 
         northPanel.setBackground(Color.DARK_GRAY);
         westPanel.setBackground(Color.DARK_GRAY);
@@ -36,11 +35,12 @@ public class MyFrame extends JFrame {
         eastPanel.setBackground(Color.DARK_GRAY);
         centerPanel.setBackground(new Color(58,58,58));
 
-        northPanel.setPreferredSize(new Dimension(100,30));
-        westPanel.setPreferredSize(new Dimension(15,100));
-        eastPanel.setPreferredSize(new Dimension(15, 100));
-        southPanel.setPreferredSize(new Dimension(100,30));
+        northPanel.setPreferredSize(new Dimension(0,0));
+        westPanel.setPreferredSize(new Dimension(0,0));
+        eastPanel.setPreferredSize(new Dimension(0, 0));
+        southPanel.setPreferredSize(new Dimension(0,0));
         centerPanel.setPreferredSize(new Dimension(imageData.width, imageData.height));
+
 
         this.add(northPanel, BorderLayout.NORTH);
         this.add(westPanel, BorderLayout.WEST);
