@@ -10,7 +10,6 @@ public class SimulationPanel extends JPanel {
     ImageData imageData;
 
     static List<Node2D> points;
-    static List<LineSegment> lineSegments = new ArrayList<>();
     static List<Boundary> boundaries = new ArrayList<>();
 
     public SimulationPanel(ImageData imageData) {
@@ -29,10 +28,6 @@ public class SimulationPanel extends JPanel {
 
         g2D.drawImage(imageData.image, 0, 0, null);
 
-        /*for (LineSegment lineSegment : lineSegments) {
-            lineSegment.paintComponent(g2D);
-        }*/
-
         for(Boundary boundary : boundaries) {
             boundary.paintComponent(g2D);
         }
@@ -43,30 +38,9 @@ public class SimulationPanel extends JPanel {
         g2D.dispose();
     }
 
-    public static Node2D addPoint2D(Node2D node2D) {
-        points.add(node2D);
-        return node2D;
-    }
-
-    static void removePoint2D() {
-        if(points.size() > 0) points.remove(points.size() - 1);
-        else System.err.println("No points to remove!");
-    }
-
-    public static LineSegment addLineSegment(LineSegment lineSegment) {
-        lineSegments.add(lineSegment);
-        return lineSegment;
-    }
-
-    public static LineSegment addLineSegment(Node2D p1, Node2D p2) {
-        LineSegment lineSegment = new LineSegment(p1, p2);
-        lineSegments.add(lineSegment);
-        return lineSegment;
-    }
-
     public static void addBoundary(Boundary boundary) {
         boundaries.add(boundary);
-        boundary.print();
+        //boundary.print();
     }
 
     void testData() {
@@ -84,6 +58,5 @@ public class SimulationPanel extends JPanel {
         }
         QuadTree.dfs(quadTree);
         System.out.println("end");
-        //this.repaint();
     }
 }

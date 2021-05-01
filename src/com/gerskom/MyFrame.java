@@ -12,8 +12,6 @@ public class MyFrame extends JFrame {
 
     SimulationPanel centerPanel;
 
-    //final static int width = 800;
-    //final static int height = 600;
     final static int hGap = 25;
     final static int vGap = 25;
 

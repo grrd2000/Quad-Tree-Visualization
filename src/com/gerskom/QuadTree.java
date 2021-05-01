@@ -18,7 +18,6 @@ public class QuadTree {
         this.level = level;
         nodes = new ArrayList<>();
         this.boundary = boundary;
-        //SimulationPanel.boundaries.add(boundary);
     }
 
     static void dfs(QuadTree tree) {

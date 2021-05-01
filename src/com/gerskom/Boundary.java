@@ -30,8 +30,6 @@ public class Boundary {
         g2D.drawLine(xMax, yMax, xMax, yMin);
         g2D.drawLine(xMax, yMin, xMin, yMin);
         g2D.drawLine(xMin, yMin, xMin, yMax);
-        //g2D.drawLine(xMax / 2, yMin, xMax / 2, yMax);
-        //g2D.drawLine(xMin, yMax / 2, xMax, yMax / 2);
     }
 
     public int getxMin() {
