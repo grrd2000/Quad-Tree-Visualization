@@ -12,13 +12,18 @@ public class MyFrame extends JFrame {
 
     SimulationPanel centerPanel;
 
+    //final static int width = 800;
+    //final static int height = 600;
+    final static int hGap = 25;
+    final static int vGap = 25;
+
     public MyFrame(ImageData imageData) {
 
         ImageIcon icon = new ImageIcon("input.jpg");
         centerPanel = new SimulationPanel(imageData);
 
-        int width = imageData.width;
-        int height = imageData.height;
+        int width = 718 + vGap * 2;
+        int height = 540 + hGap * 2;
         this.setSize(width, height);
         this.setTitle("QuadTree Visualization");
         this.getContentPane().setBackground(Color.DARK_GRAY);
@@ -35,10 +40,10 @@ public class MyFrame extends JFrame {
         eastPanel.setBackground(Color.DARK_GRAY);
         centerPanel.setBackground(new Color(58,58,58));
 
-        northPanel.setPreferredSize(new Dimension(0,0));
-        westPanel.setPreferredSize(new Dimension(0,0));
-        eastPanel.setPreferredSize(new Dimension(0, 0));
-        southPanel.setPreferredSize(new Dimension(0,0));
+        northPanel.setPreferredSize(new Dimension(0 ,hGap));
+        westPanel.setPreferredSize(new Dimension(vGap,0));
+        eastPanel.setPreferredSize(new Dimension(vGap, 0));
+        southPanel.setPreferredSize(new Dimension(0, hGap));
         centerPanel.setPreferredSize(new Dimension(imageData.width, imageData.height));
 
 
